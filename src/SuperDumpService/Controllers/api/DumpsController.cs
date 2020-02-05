@@ -15,9 +15,9 @@ using System.Linq;
 using System.Text;
 using SuperDumpService.ViewModels;
 using Microsoft.AspNetCore.Http;
+using System.Net.Http;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace SuperDumpService.Controllers.Api {
 	[Route("api/[controller]")]
 	public class DumpsController : Controller {
@@ -55,7 +55,7 @@ namespace SuperDumpService.Controllers.Api {
 		[ProducesResponseType(typeof(List<SDResult>), 200)]
 		[ProducesResponseType(typeof(string), 404)]
 		public async Task<IActionResult> Get(string bundleId) {
-			// check if it is a bundle 
+			// check if it is a bundle
 			var bundleInfo = superDumpRepo.GetBundle(bundleId);
 			if (bundleInfo == null) {
 				logger.LogNotFound("Api: Bundle not found", HttpContext, "BundleId", bundleId);
@@ -123,7 +123,7 @@ namespace SuperDumpService.Controllers.Api {
 
 		/// <summary>
 		/// Returns a calendar heatmap (count of found dumps per hour)
-		/// 
+		///
 		/// Can always be filtered by time (via <param name="start"/>, <param name="stop"/>)
 		/// Search can either filter by
 		///    - <param name="searchFilter">simple search query</param>
@@ -164,17 +164,39 @@ namespace SuperDumpService.Controllers.Api {
 		}
 
 		/// <summary>
+		/// This is a dummy function!
+		///
+		///
+		///
+		///
+		///
+		///
+		/// </summary>
+		/// <returns>Supposed to be JSON containing [Crash/Error, MethodName, ]</returns>
+		[HttpGet("Test")]
+		[ProducesResponseType(200)]
+		[ProducesResponseType(typeof(string), 404)]
+		public async Task<IActionResult> Test(
+				[FromQuery]string address
+			) {
+			//System.Net.WebClient myWebClient = new System.Net.WebClient();
+			//myWebClient.DownloadFile(address, "temp"); 
+			
+			return Content("{'Yo': 3}", "application/json");
+		}
+
+		/// <summary>
 		/// serialization for cal-heatmap format (https://cal-heatmap.com/#data-format)
 		/// custom implementation to avoid the hassle of json converters for this simple format
-		/// 
-		/// cal-heatmap data: 
+		///
+		/// cal-heatmap data:
 		///
 		///   {
 		///     "timestamp": value,
 		///     "timestamp2": value2,
 		///     ...
 		///   }
-		/// 
+		///
 		/// </summary>
 		private static string ToCalHeatmapJson(ILookup<int, DumpViewModel> dumps) {
 			var sb = new StringBuilder();

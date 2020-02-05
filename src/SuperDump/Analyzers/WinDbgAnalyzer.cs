@@ -35,6 +35,7 @@ namespace SuperDump.Analyzers {
 				ExecuteCommand(debugControl, "!analyze -v");
 				ExecuteCommand(debugControl, "~* k", "native stacks");
 				ExecuteCommand(debugControl, "~*e !clrstack", "managed stacks");
+				ExecuteCommand(debugControl, "!dumpstack", "Combined stack!");
 				ExecuteCommand(debugControl, "x *!", "symbol paths"); // only shows symbols of modules that have been requested, so it's important to do this after listing stacks
 			} finally {
 				debugControl.CloseLogFile();

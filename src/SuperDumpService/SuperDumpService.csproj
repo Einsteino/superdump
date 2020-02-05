@@ -34,7 +34,7 @@
     <PackageReference Include="ByteSize" Version="2.0.0-beta1" />
     <PackageReference Include="Hangfire" Version="1.7.6" />
     <PackageReference Include="Hangfire.AspNetCore" Version="1.7.6" />
-    <PackageReference Include="Hangfire.MemoryStorage.Core" Version="1.4.0" />
+    <PackageReference Include="Hangfire.MemoryStorage.Core" Version="1.6.3" />
     <PackageReference Include="Humanizer" Version="2.7.2" />
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink.Loader" Version="14.1.0" />
     <!--<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" /> ___ what do we need this for? it has a version clash with BenchmarkDotnet. can we remove it? -->
